@@ -228,6 +228,7 @@ export default function Main(props: CSVImporterProps) {
                 num_rows: mappedRows.length,
                 num_columns: includedColumns.length,
                 error: null,
+                fileName: data.fileName,
                 // TODO (client-sdk): Either remove "name" or change it to the be the name of the original upload column
                 columns: includedColumns.map(({ key }) => ({ key, name: key })),
                 rows: mappedRows,
