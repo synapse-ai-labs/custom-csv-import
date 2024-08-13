@@ -54403,7 +54403,11 @@ function PromptSelection(_a) {
                         , { 
                             // value={selectedOption}
                             styles: {
-                                control: function (baseStyles, state) { return (__assign$1(__assign$1({}, baseStyles), { backgroundColor: 'red' })); }
+                                control: function (baseStyles, state) { return (__assign$1(__assign$1({}, baseStyles), { backgroundColor: 'red' })); },
+                                option: function (styles, _a) {
+                                    _a.data; var isDisabled = _a.isDisabled; _a.isFocused; _a.isSelected;
+                                    return __assign$1(__assign$1({}, styles), { backgroundColor: isDisabled ? 'red' : 'green', color: '#FFF', cursor: isDisabled ? 'not-allowed' : 'default' });
+                                },
                             }, onChange: function (e) { return handleChange(e); }, options: options }), jsxRuntime.jsx(Button$1, __assign$1({ type: "button", colorScheme: "secondary", leftIcon: jsxRuntime.jsx(PiArrowCounterClockwise, {}), onClick: reload }, { children: t("Upload another file") })), isModal && (jsxRuntime.jsx(Button$1, __assign$1({ type: "button", colorScheme: "primary", leftIcon: jsxRuntime.jsx(PiCheckBold, {}), onClick: close }, { children: t("Done") })))] }))] }) })));
 }
 

@@ -37,8 +37,16 @@ export default function PromptSelection({ reload, close, isModal, prompts }: Pro
             styles={{
               control: (baseStyles, state) => ({
                 ...baseStyles,
-                backgroundColor: 'red'
-              })
+                backgroundColor: 'red',
+              }),
+              option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+                return {
+                  ...styles,
+                  backgroundColor: isDisabled ? 'red' : 'green',
+                  color: '#FFF',
+                  cursor: isDisabled ? 'not-allowed' : 'default',
+                }
+              },
             }}
             onChange={(e: any) => handleChange(e)}
             options={options}
