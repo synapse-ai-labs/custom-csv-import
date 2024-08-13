@@ -32,6 +32,7 @@ export default function Main(props: CSVImporterProps) {
     customStyles,
     showDownloadTemplateButton,
     skipHeaderRowSelection,
+    prompts
   } = props;
   const skipHeader = skipHeaderRowSelection ?? false;
 
@@ -247,7 +248,7 @@ export default function Main(props: CSVImporterProps) {
           />
         );
       case StepEnum.PromptSelection:
-        return <PromptSelection reload={reload} close={requestClose} isModal={isModal} />;
+        return <PromptSelection prompts={prompts} reload={reload} close={requestClose} isModal={isModal} />;
       case StepEnum.Complete:
         return <Complete reload={reload} close={requestClose} isModal={isModal} />;
       default:
