@@ -54394,7 +54394,7 @@ function PromptSelection(_a) {
                                     _a.data; var isDisabled = _a.isDisabled; _a.isFocused; _a.isSelected;
                                     return __assign$1(__assign$1({}, styles), { color: 'black', cursor: isDisabled ? 'not-allowed' : 'default' });
                                 },
-                            }, onChange: function (e) { return handleChange(e.target.value); }, options: options }), jsx(Checkbox, { checked: true, onChange: function (e) { return handleCheckboxSelection(e); } }), jsx(Button$1, __assign$1({ type: "button", colorScheme: "secondary", leftIcon: jsx(PiArrowCounterClockwise, {}), onClick: reload }, { children: t("Upload another file") })), isModal && (jsx(Button$1, __assign$1({ onClick: handleCompleteClick, type: "submit", colorScheme: "primary", leftIcon: jsx(PiCheckBold, {}) }, { children: t("Complete") })))] }))] }) })));
+                            }, onChange: function (selectedOption) { return handleChange(selectedOption); }, options: options }), jsx(Checkbox, { checked: true, onChange: function (e) { return handleCheckboxSelection(e); } }), jsx(Button$1, __assign$1({ type: "button", colorScheme: "secondary", leftIcon: jsx(PiArrowCounterClockwise, {}), onClick: reload }, { children: t("Upload another file") })), isModal && (jsx(Button$1, __assign$1({ onClick: handleCompleteClick, type: "submit", colorScheme: "primary", leftIcon: jsx(PiCheckBold, {}) }, { children: t("Complete") })))] }))] }) })));
 }
 
 function Main(props) {

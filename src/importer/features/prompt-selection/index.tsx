@@ -68,7 +68,7 @@ export default function PromptSelection({ reload, close, isModal, prompts, onSuc
                 }
               },
             }}
-            onChange={(e: any) => handleChange(e.target.value)}
+            onChange={(selectedOption: any) => handleChange(selectedOption)}
             options={options}
           />
 
