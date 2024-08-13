@@ -33,7 +33,7 @@ export default function PromptSelection({ reload, close, isModal, prompts }: Pro
         <div>{t("Select a Prompt")}</div>
         <div className={style.actions}>
           <DropdownFields
-              options={{1: {name: 'abc', value: 1}}}
+              options={{1: {name: 'abc', value: 'abc'}}}
               // options={templateFields}
               value={"1"}
               placeholder={t("Select review prompt")}

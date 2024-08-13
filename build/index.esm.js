@@ -47249,7 +47249,7 @@ function PromptSelection(_a) {
     var setSelectedValues = function () {
         console.log("setting selected values");
     };
-    return (jsx(Box$1, __assign$1({ className: style.content }, { children: jsxs(Fragment$1, { children: [jsx("span", __assign$1({ className: style.icon }, { children: jsx(PiCheckBold, {}) })), jsx("div", { children: t("Select a Prompt") }), jsxs("div", __assign$1({ className: style.actions }, { children: [jsx(DropdownFields, { options: { 1: { name: 'abc', value: 1 } }, 
+    return (jsx(Box$1, __assign$1({ className: style.content }, { children: jsxs(Fragment$1, { children: [jsx("span", __assign$1({ className: style.icon }, { children: jsx(PiCheckBold, {}) })), jsx("div", { children: t("Select a Prompt") }), jsxs("div", __assign$1({ className: style.actions }, { children: [jsx(DropdownFields, { options: { 1: { name: 'abc', value: 'abc' } }, 
                             // options={templateFields}
                             value: "1", placeholder: t("Select review prompt"), onChange: function (key) { return console.log({ selectedKey: key }); }, selectedValues: [{ key: "1", selected: true }], updateSelectedValues: setSelectedValues }), jsx(Button$1, __assign$1({ type: "button", colorScheme: "secondary", leftIcon: jsx(PiArrowCounterClockwise, {}), onClick: reload }, { children: t("Upload another file") })), isModal && (jsx(Button$1, __assign$1({ type: "button", colorScheme: "primary", leftIcon: jsx(PiCheckBold, {}), onClick: close }, { children: t("Done") })))] }))] }) })));
 }
