@@ -11,10 +11,10 @@ declare const _default: import("@storybook/types").ComponentAnnotations<import("
     skipHeaderRowSelection?: boolean | undefined;
     language?: string | undefined;
     customTranslations?: import("i18next").Resource | undefined;
-    prompts?: {
+    prompts: {
         id: number;
         label: string;
-    }[] | undefined;
+    }[];
 } & {
     isModal?: boolean | undefined;
     modalIsOpen?: boolean | undefined;
@@ -34,10 +34,10 @@ export declare const Importer: import("@storybook/types").AnnotatedStoryFn<impor
     skipHeaderRowSelection?: boolean | undefined;
     language?: string | undefined;
     customTranslations?: import("i18next").Resource | undefined;
-    prompts?: {
+    prompts: {
         id: number;
         label: string;
-    }[] | undefined;
+    }[];
 } & {
     isModal?: boolean | undefined;
     modalIsOpen?: boolean | undefined;

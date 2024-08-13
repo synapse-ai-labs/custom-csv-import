@@ -54361,7 +54361,7 @@ var StateManagedSelect = /*#__PURE__*/forwardRef$1(function (props, ref) {
 var StateManagedSelect$1 = StateManagedSelect;
 
 function PromptSelection(_a) {
-    _a.reload; _a.close; var isModal = _a.isModal, prompts = _a.prompts, onSuccess = _a.onSuccess;
+    var isModal = _a.isModal, prompts = _a.prompts, onSuccess = _a.onSuccess;
     var t = useTranslation().t;
     var _b = useState(), selectedPrompt = _b[0], setSelectedPrompt = _b[1];
     var _c = useState(true), inheritRepoPrompt = _c[0], setInheritRepoPrompt = _c[1];
@@ -54370,11 +54370,6 @@ function PromptSelection(_a) {
         console.log({ selectedOption: selectedValue.value });
         setSelectedPrompt(selectedValue.value);
     };
-    var options = [
-        { value: 'chocolate', label: 'Chocolate' },
-        { value: 'strawberry', label: 'Strawberry' },
-        { value: 'vanilla', label: 'Vanilla' },
-    ];
     var handleCheckboxSelection = function (e) {
         console.log({ checkboxSelection: e.target.checked });
         setInheritRepoPrompt(e.target.checked);
@@ -54394,7 +54389,12 @@ function PromptSelection(_a) {
                                         _a.data; var isDisabled = _a.isDisabled; _a.isFocused; _a.isSelected;
                                         return __assign$1(__assign$1({}, styles), { color: 'black', cursor: isDisabled ? 'not-allowed' : 'default' });
                                     },
-                                }, onChange: function (selectedOption) { return handleChange(selectedOption); }, options: options }) }))] })), jsxs("div", __assign$1({ style: { display: 'flex' } }, { children: [jsx("div", { children: "Inherit repository review prompts" }), jsx(Checkbox, { style: { marginLeft: 10 }, checked: inheritRepoPrompt, onChange: function (e) { return handleCheckboxSelection(e); } })] })), jsx("div", __assign$1({ className: style.actions }, { children: isModal && (jsx(Button$1, __assign$1({ onClick: handleCompleteClick, type: "submit", colorScheme: "primary", leftIcon: jsx(PiCheckBold, {}) }, { children: t("Complete") }))) }))] }) })));
+                                }, onChange: function (selectedOption) { return handleChange(selectedOption); }, options: prompts.map(function (o) {
+                                    return {
+                                        value: o.id,
+                                        label: o.label
+                                    };
+                                }) }) }))] })), jsxs("div", __assign$1({ style: { display: 'flex' } }, { children: [jsx("div", { children: "Inherit repository review prompts" }), jsx(Checkbox, { style: { marginLeft: 10 }, checked: inheritRepoPrompt, onChange: function (e) { return handleCheckboxSelection(e); } })] })), jsx("div", __assign$1({ className: style.actions }, { children: isModal && (jsx(Button$1, __assign$1({ onClick: handleCompleteClick, type: "submit", colorScheme: "primary", leftIcon: jsx(PiCheckBold, {}) }, { children: t("Complete") }))) }))] }) })));
 }
 
 function Main(props) {
@@ -54525,49 +54525,11 @@ function Main(props) {
                 return (jsx(RowSelection, { data: data, onCancel: reload, onSuccess: function () { return goNext(); }, selectedHeaderRow: selectedHeaderRow, setSelectedHeaderRow: setSelectedHeaderRow }));
             case StepEnum.MapColumns:
                 return (jsx(MapColumns, { template: parsedTemplate, data: data, columnMapping: columnMapping, skipHeaderRowSelection: skipHeader, selectedHeaderRow: selectedHeaderRow, onSuccess: function (columnMapping) {
-                        // setIsSubmitting(true);
                         setColumnMapping(columnMapping);
-                        // // TODO (client-sdk): Move this type, add other data attributes (i.e. column definitions), and move the data processing to a function
-                        // type MappedRow = {
-                        //   index: number;
-                        //   values: Record<string, number | string>;
-                        // };
-                        // const startIndex = (selectedHeaderRow || 0) + 1;
-                        //
-                        // const mappedRows: MappedRow[] = [];
-                        // data.rows.slice(startIndex).forEach((row: FileRow) => {
-                        //   const resultingRow: MappedRow = {
-                        //     index: row.index - startIndex,
-                        //     values: {},
-                        //   };
-                        //   row.values.forEach((value: string, valueIndex: number) => {
-                        //     const mapping = columnMapping[valueIndex];
-                        //     if (mapping && mapping.include) {
-                        //       resultingRow.values[mapping.key] = value;
-                        //     }
-                        //   });
-                        //   mappedRows.push(resultingRow);
-                        // });
-                        //
-                        // const includedColumns = Object.values(columnMapping).filter(({ include }) => include);
-                        //
-                        // const onCompleteData = {
-                        //   num_rows: mappedRows.length,
-                        //   num_columns: includedColumns.length,
-                        //   error: null,
-                        //   fileName: data.fileName,
-                        //   // TODO (client-sdk): Either remove "name" or change it to the be the name of the original upload column
-                        //   columns: includedColumns.map(({ key }) => ({ key, name: key })),
-                        //   rows: mappedRows,
-                        // };
-                        //
-                        // onComplete && onComplete(onCompleteData);
-                        //
-                        // setIsSubmitting(false);
                         goNext();
                     }, isSubmitting: isSubmitting, onCancel: skipHeader ? reload : function () { return goBack(StepEnum.RowSelection); } }));
             case StepEnum.PromptSelection:
-                return jsx(PromptSelection, { prompts: prompts, reload: reload, close: requestClose, isModal: isModal, onSuccess: function (selectedPromptId, inheritRepoConfig) {
+                return jsx(PromptSelection, { prompts: prompts, isModal: isModal, onSuccess: function (selectedPromptId, inheritRepoConfig) {
                         console.log("from promptSelection onSuccess");
                         console.log({ selectedPromptId: selectedPromptId, inheritRepoConfig: inheritRepoConfig });
                         setIsSubmitting(true);

@@ -203,46 +203,7 @@ export default function Main(props: CSVImporterProps) {
             skipHeaderRowSelection={skipHeader}
             selectedHeaderRow={selectedHeaderRow}
             onSuccess={(columnMapping) => {
-              // setIsSubmitting(true);
               setColumnMapping(columnMapping);
-
-              // // TODO (client-sdk): Move this type, add other data attributes (i.e. column definitions), and move the data processing to a function
-              // type MappedRow = {
-              //   index: number;
-              //   values: Record<string, number | string>;
-              // };
-              // const startIndex = (selectedHeaderRow || 0) + 1;
-              //
-              // const mappedRows: MappedRow[] = [];
-              // data.rows.slice(startIndex).forEach((row: FileRow) => {
-              //   const resultingRow: MappedRow = {
-              //     index: row.index - startIndex,
-              //     values: {},
-              //   };
-              //   row.values.forEach((value: string, valueIndex: number) => {
-              //     const mapping = columnMapping[valueIndex];
-              //     if (mapping && mapping.include) {
-              //       resultingRow.values[mapping.key] = value;
-              //     }
-              //   });
-              //   mappedRows.push(resultingRow);
-              // });
-              //
-              // const includedColumns = Object.values(columnMapping).filter(({ include }) => include);
-              //
-              // const onCompleteData = {
-              //   num_rows: mappedRows.length,
-              //   num_columns: includedColumns.length,
-              //   error: null,
-              //   fileName: data.fileName,
-              //   // TODO (client-sdk): Either remove "name" or change it to the be the name of the original upload column
-              //   columns: includedColumns.map(({ key }) => ({ key, name: key })),
-              //   rows: mappedRows,
-              // };
-              //
-              // onComplete && onComplete(onCompleteData);
-              //
-              // setIsSubmitting(false);
               goNext();
             }}
             isSubmitting={isSubmitting}
@@ -252,8 +213,6 @@ export default function Main(props: CSVImporterProps) {
       case StepEnum.PromptSelection:
         return <PromptSelection
           prompts={prompts}
-          reload={reload}
-          close={requestClose}
           isModal={isModal}
           onSuccess={(selectedPromptId: string, inheritRepoConfig: boolean) => {
             console.log("from promptSelection onSuccess");

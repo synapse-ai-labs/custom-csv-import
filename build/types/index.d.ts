@@ -18,7 +18,7 @@ export type CSVImporterProps = (HTMLAttributes<HTMLDialogElement> & HTMLAttribut
     skipHeaderRowSelection?: boolean;
     language?: string;
     customTranslations?: Resource;
-    prompts?: {
+    prompts: {
         id: number;
         label: string;
     }[];

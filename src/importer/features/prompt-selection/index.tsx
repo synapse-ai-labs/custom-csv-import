@@ -8,7 +8,7 @@ import { PiCheckBold } from "react-icons/pi";
 import Select from 'react-select';
 import Checkbox from "../../components/Checkbox";
 
-export default function PromptSelection({ reload, close, isModal, prompts, onSuccess }: PromptSelectionProps) {
+export default function PromptSelection({ isModal, prompts, onSuccess }: PromptSelectionProps) {
   const { t } = useTranslation();
 
   const [selectedPrompt, setSelectedPrompt] = useState<string>();
@@ -26,12 +26,6 @@ export default function PromptSelection({ reload, close, isModal, prompts, onSuc
     console.log({selectedOption: selectedValue.value});
     setSelectedPrompt(selectedValue.value)
   }
-
-  const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' },
-  ];
 
   const handleCheckboxSelection = (e: any) => {
     console.log({checkboxSelection: e.target.checked});
@@ -69,7 +63,12 @@ export default function PromptSelection({ reload, close, isModal, prompts, onSuc
                 },
               }}
               onChange={(selectedOption: any) => handleChange(selectedOption)}
-              options={options}
+              options={prompts.map(o => {
+                return {
+                  value: o.id,
+                  label: o.label
+                }
+              })}
             />
           </span>
         </div>
