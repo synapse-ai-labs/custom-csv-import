@@ -34,6 +34,12 @@ export default function PromptSelection({ reload, close, isModal, prompts }: Pro
         <div className={style.actions}>
           <Select
             // value={selectedOption}
+            styles={{
+              control: (baseStyles, state) => ({
+                ...baseStyles,
+                backgroundColor: 'red'
+              })
+            }}
             onChange={(e: any) => handleChange(e)}
             options={options}
           />
