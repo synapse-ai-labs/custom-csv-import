@@ -13,7 +13,7 @@ export default function PromptSelection({ reload, close, isModal }: PromptSelect
         <span className={style.icon}>
           <PiCheckBold />
         </span>
-        <div>{t("Import Successful")}</div>
+        <div>{t("Select a Prompt")}</div>
         <div className={style.actions}>
           <Button type="button" colorScheme="secondary" leftIcon={<PiArrowCounterClockwise />} onClick={reload}>
             {t("Upload another file")}

@@ -47262,7 +47262,7 @@ styleInject(css_248z$2);
 function PromptSelection(_a) {
     var reload = _a.reload, close = _a.close, isModal = _a.isModal;
     var t = useTranslation().t;
-    return (jsxRuntime.jsx(Box$1, __assign$1({ className: style.content }, { children: jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [jsxRuntime.jsx("span", __assign$1({ className: style.icon }, { children: jsxRuntime.jsx(PiCheckBold, {}) })), jsxRuntime.jsx("div", { children: t("Import Successful") }), jsxRuntime.jsxs("div", __assign$1({ className: style.actions }, { children: [jsxRuntime.jsx(Button$1, __assign$1({ type: "button", colorScheme: "secondary", leftIcon: jsxRuntime.jsx(PiArrowCounterClockwise, {}), onClick: reload }, { children: t("Upload another file") })), isModal && (jsxRuntime.jsx(Button$1, __assign$1({ type: "button", colorScheme: "primary", leftIcon: jsxRuntime.jsx(PiCheckBold, {}), onClick: close }, { children: t("Done") })))] }))] }) })));
+    return (jsxRuntime.jsx(Box$1, __assign$1({ className: style.content }, { children: jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [jsxRuntime.jsx("span", __assign$1({ className: style.icon }, { children: jsxRuntime.jsx(PiCheckBold, {}) })), jsxRuntime.jsx("div", { children: t("Select a Prompt") }), jsxRuntime.jsxs("div", __assign$1({ className: style.actions }, { children: [jsxRuntime.jsx(Button$1, __assign$1({ type: "button", colorScheme: "secondary", leftIcon: jsxRuntime.jsx(PiArrowCounterClockwise, {}), onClick: reload }, { children: t("Upload another file") })), isModal && (jsxRuntime.jsx(Button$1, __assign$1({ type: "button", colorScheme: "primary", leftIcon: jsxRuntime.jsx(PiCheckBold, {}), onClick: close }, { children: t("Done") })))] }))] }) })));
 }
 
 function Main(props) {

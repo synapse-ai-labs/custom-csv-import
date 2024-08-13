@@ -47236,7 +47236,7 @@ styleInject(css_248z$2);
 function PromptSelection(_a) {
     var reload = _a.reload, close = _a.close, isModal = _a.isModal;
     var t = useTranslation().t;
-    return (jsx(Box$1, __assign$1({ className: style.content }, { children: jsxs(Fragment$1, { children: [jsx("span", __assign$1({ className: style.icon }, { children: jsx(PiCheckBold, {}) })), jsx("div", { children: t("Import Successful") }), jsxs("div", __assign$1({ className: style.actions }, { children: [jsx(Button$1, __assign$1({ type: "button", colorScheme: "secondary", leftIcon: jsx(PiArrowCounterClockwise, {}), onClick: reload }, { children: t("Upload another file") })), isModal && (jsx(Button$1, __assign$1({ type: "button", colorScheme: "primary", leftIcon: jsx(PiCheckBold, {}), onClick: close }, { children: t("Done") })))] }))] }) })));
+    return (jsx(Box$1, __assign$1({ className: style.content }, { children: jsxs(Fragment$1, { children: [jsx("span", __assign$1({ className: style.icon }, { children: jsx(PiCheckBold, {}) })), jsx("div", { children: t("Select a Prompt") }), jsxs("div", __assign$1({ className: style.actions }, { children: [jsx(Button$1, __assign$1({ type: "button", colorScheme: "secondary", leftIcon: jsx(PiArrowCounterClockwise, {}), onClick: reload }, { children: t("Upload another file") })), isModal && (jsx(Button$1, __assign$1({ type: "button", colorScheme: "primary", leftIcon: jsx(PiCheckBold, {}), onClick: close }, { children: t("Done") })))] }))] }) })));
 }
 
 function Main(props) {
