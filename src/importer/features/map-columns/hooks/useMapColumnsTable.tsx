@@ -74,6 +74,8 @@ export default function useMapColumnsTable(
     [JSON.stringify(templateColumns)]
   );
 
+  console.log({templateFields, selectedValues});
+
   const handleTemplateChange = (uploadColumnIndex: number, key: string) => {
     setValues((prev) => {
       const templatesFields = { ...prev, [uploadColumnIndex]: { ...prev[uploadColumnIndex], key: key, include: !!key, selected: !!key } };
@@ -97,6 +99,8 @@ export default function useMapColumnsTable(
       const { name, sample_data } = uc;
       const suggestion = values?.[index] || {};
       const samples = sample_data.filter((d) => d);
+
+      console.log({suggestionKey: suggestion.key});
 
       return {
         [yourFileColumn]: {
