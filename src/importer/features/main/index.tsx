@@ -19,6 +19,9 @@ import RowSelection from "../row-selection";
 import Uploader from "../uploader";
 import { PiX } from "react-icons/pi";
 import { useTranslation } from "react-i18next";
+import {Simulate} from "react-dom/test-utils";
+import paste = Simulate.paste;
+import PromptSelection from "../prompt-selection";
 
 export default function Main(props: CSVImporterProps) {
   const {
@@ -243,6 +246,8 @@ export default function Main(props: CSVImporterProps) {
             onCancel={skipHeader ? reload : () => goBack(StepEnum.RowSelection)}
           />
         );
+      case StepEnum.PromptSelection:
+        return <PromptSelection reload={reload} close={requestClose} isModal={isModal} />;
       case StepEnum.Complete:
         return <Complete reload={reload} close={requestClose} isModal={isModal} />;
       default:
