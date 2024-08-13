@@ -54416,7 +54416,7 @@ function PromptSelection(_a) {
                                         value: o.id,
                                         label: o.label
                                     };
-                                }) }) }))] })), jsxRuntime.jsxs("div", __assign$1({ style: { display: 'flex' } }, { children: [jsxRuntime.jsx("div", { children: "Inherit repository review prompts" }), jsxRuntime.jsx(Checkbox, { style: { marginLeft: 10 }, checked: inheritRepoPrompt, onChange: function (e) { return handleCheckboxSelection(e); } })] })), jsxRuntime.jsx("div", __assign$1({ className: style.actions }, { children: isModal && (jsxRuntime.jsx(Button$1, __assign$1({ onClick: handleCompleteClick, type: "submit", colorScheme: "primary", leftIcon: jsxRuntime.jsx(PiCheckBold, {}) }, { children: t("Complete") }))) }))] }) })));
+                                }) }) }))] })), jsxRuntime.jsxs("div", __assign$1({ style: { display: 'flex' } }, { children: [jsxRuntime.jsx("div", { children: "Inherit repository review prompts" }), jsxRuntime.jsx(Checkbox, { style: { marginLeft: 10 }, checked: inheritRepoPrompt, onChange: function (e) { return handleCheckboxSelection(e); } })] })), jsxRuntime.jsx("div", __assign$1({ className: style.actions }, { children: isModal && (jsxRuntime.jsx(Button$1, __assign$1({ isDisabled: !selectedPrompt, onClick: handleCompleteClick, type: "submit", colorScheme: "primary", leftIcon: jsxRuntime.jsx(PiCheckBold, {}) }, { children: t("Complete") }))) }))] }) })));
 }
 
 function Main(props) {

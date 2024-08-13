@@ -15,7 +15,6 @@ export default function PromptSelection({ isModal, prompts, onSuccess }: PromptS
 
   const [inheritRepoPrompt, setInheritRepoPrompt] = useState(true);
 
-
   console.log({prompts});
 
   const setSelectedValues = () => {
@@ -82,7 +81,7 @@ export default function PromptSelection({ isModal, prompts, onSuccess }: PromptS
         </div>
         <div className={style.actions}>
           {isModal && (
-            <Button onClick={handleCompleteClick} type="submit" colorScheme="primary" leftIcon={<PiCheckBold />} >
+            <Button isDisabled={!selectedPrompt} onClick={handleCompleteClick} type="submit" colorScheme="primary" leftIcon={<PiCheckBold />} >
               {t("Complete")}
             </Button>
           )}
