@@ -52,7 +52,7 @@ export default function PromptSelection({ reload, close, isModal, prompts, onSuc
           <PiCheckBold />
         </span>
         <div>{t("Select a Prompt")}</div>
-        <div className={style.actions}>
+        <div>
           <Select
             // value={selectedOption}
             styles={{
@@ -73,12 +73,11 @@ export default function PromptSelection({ reload, close, isModal, prompts, onSuc
           />
 
           <Checkbox
-              checked={true}
+              checked={inheritRepoPrompt}
               onChange={(e) => handleCheckboxSelection(e)}
           />
-          <Button type="button" colorScheme="secondary" leftIcon={<PiArrowCounterClockwise />} onClick={reload}>
-            {t("Upload another file")}
-          </Button>
+        </div>
+        <div className={style.actions}>
           {isModal && (
             <Button onClick={handleCompleteClick} type="submit" colorScheme="primary" leftIcon={<PiCheckBold />} >
               {t("Complete")}
