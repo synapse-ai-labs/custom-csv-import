@@ -34,7 +34,7 @@ export default function PromptSelection({ reload, close, isModal, prompts, onSuc
   ];
 
   const handleCheckboxSelection = (e: any) => {
-    console.log({checkboxSelection: e.target.checked()});
+    console.log({checkboxSelection: e.target.checked});
     setInheritRepoPrompt(e.target.checked);
   }
 
@@ -48,9 +48,9 @@ export default function PromptSelection({ reload, close, isModal, prompts, onSuc
   return (
     <Box className={style.content}>
       <>
-        <span className={style.icon}>
-          <PiCheckBold />
-        </span>
+        {/*<span className={style.icon}>*/}
+        {/*  <PiCheckBold />*/}
+        {/*</span>*/}
         <div>{t("Select a Prompt")}</div>
         <div>
           <Select
@@ -71,11 +71,12 @@ export default function PromptSelection({ reload, close, isModal, prompts, onSuc
             onChange={(selectedOption: any) => handleChange(selectedOption)}
             options={options}
           />
-
+        </div>
+        <div>
           <Checkbox
               checked={inheritRepoPrompt}
               onChange={(e) => handleCheckboxSelection(e)}
-          />
+          >Inherit repository review prompts</Checkbox>
         </div>
         <div className={style.actions}>
           {isModal && (
