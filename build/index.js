@@ -54410,7 +54410,7 @@ function PromptSelection(_a) {
         e.preventDefault();
         onSuccess(selectedPrompt, inheritRepoPrompt);
     };
-    return (jsxRuntime.jsx(Box$1, __assign$1({ className: style.content }, { children: jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [jsxRuntime.jsxs("div", __assign$1({ style: { display: 'flex' } }, { children: [jsxRuntime.jsx("div", { children: t("Select a Prompt") }), jsxRuntime.jsx("div", __assign$1({ style: { marginLeft: 10 } }, { children: jsxRuntime.jsx(StateManagedSelect$1
+    return (jsxRuntime.jsx(Box$1, __assign$1({ className: style.content }, { children: jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [jsxRuntime.jsxs("div", __assign$1({ style: { display: 'flex', alignItems: 'center' } }, { children: [jsxRuntime.jsx("span", { children: t("Select review prompt") }), jsxRuntime.jsx("span", __assign$1({ style: { marginLeft: 10 } }, { children: jsxRuntime.jsx(StateManagedSelect$1
                             // value={selectedOption}
                             , { 
                                 // value={selectedOption}

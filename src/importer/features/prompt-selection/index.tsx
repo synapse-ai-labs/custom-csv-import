@@ -48,9 +48,9 @@ export default function PromptSelection({ reload, close, isModal, prompts, onSuc
   return (
     <Box className={style.content}>
       <>
-        <div style={{display: 'flex'}}>
-          <div>{t("Select a Prompt")}</div>
-          <div style={{marginLeft: 10}}>
+        <div style={{display: 'flex', alignItems: 'center'}}>
+          <span>{t("Select review prompt")}</span>
+          <span style={{marginLeft: 10}}>
             <Select
               // value={selectedOption}
               placeholder={'Select review prompt'}
@@ -71,7 +71,7 @@ export default function PromptSelection({ reload, close, isModal, prompts, onSuc
               onChange={(selectedOption: any) => handleChange(selectedOption)}
               options={options}
             />
-          </div>
+          </span>
         </div>
         <div style={{display: 'flex'}}>
           <div>Inherit repository review prompts</div>
