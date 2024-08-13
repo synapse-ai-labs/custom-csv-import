@@ -7,7 +7,6 @@ import style from "./style/Complete.module.scss";
 import { PiCheckBold } from "react-icons/pi";
 import Select from 'react-select';
 import Checkbox from "../../components/Checkbox";
-import {flexbox} from "@chakra-ui/react";
 
 export default function PromptSelection({ reload, close, isModal, prompts, onSuccess }: PromptSelectionProps) {
   const { t } = useTranslation();

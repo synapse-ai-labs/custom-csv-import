@@ -54551,8 +54551,52 @@ function Main(props) {
                 return (jsxRuntime.jsx(RowSelection, { data: data, onCancel: reload, onSuccess: function () { return goNext(); }, selectedHeaderRow: selectedHeaderRow, setSelectedHeaderRow: setSelectedHeaderRow }));
             case StepEnum.MapColumns:
                 return (jsxRuntime.jsx(MapColumns, { template: parsedTemplate, data: data, columnMapping: columnMapping, skipHeaderRowSelection: skipHeader, selectedHeaderRow: selectedHeaderRow, onSuccess: function (columnMapping) {
-                        setIsSubmitting(true);
+                        // setIsSubmitting(true);
                         setColumnMapping(columnMapping);
+                        // // TODO (client-sdk): Move this type, add other data attributes (i.e. column definitions), and move the data processing to a function
+                        // type MappedRow = {
+                        //   index: number;
+                        //   values: Record<string, number | string>;
+                        // };
+                        // const startIndex = (selectedHeaderRow || 0) + 1;
+                        //
+                        // const mappedRows: MappedRow[] = [];
+                        // data.rows.slice(startIndex).forEach((row: FileRow) => {
+                        //   const resultingRow: MappedRow = {
+                        //     index: row.index - startIndex,
+                        //     values: {},
+                        //   };
+                        //   row.values.forEach((value: string, valueIndex: number) => {
+                        //     const mapping = columnMapping[valueIndex];
+                        //     if (mapping && mapping.include) {
+                        //       resultingRow.values[mapping.key] = value;
+                        //     }
+                        //   });
+                        //   mappedRows.push(resultingRow);
+                        // });
+                        //
+                        // const includedColumns = Object.values(columnMapping).filter(({ include }) => include);
+                        //
+                        // const onCompleteData = {
+                        //   num_rows: mappedRows.length,
+                        //   num_columns: includedColumns.length,
+                        //   error: null,
+                        //   fileName: data.fileName,
+                        //   // TODO (client-sdk): Either remove "name" or change it to the be the name of the original upload column
+                        //   columns: includedColumns.map(({ key }) => ({ key, name: key })),
+                        //   rows: mappedRows,
+                        // };
+                        //
+                        // onComplete && onComplete(onCompleteData);
+                        //
+                        // setIsSubmitting(false);
+                        goNext();
+                    }, isSubmitting: isSubmitting, onCancel: skipHeader ? reload : function () { return goBack(StepEnum.RowSelection); } }));
+            case StepEnum.PromptSelection:
+                return jsxRuntime.jsx(PromptSelection, { prompts: prompts, reload: reload, close: requestClose, isModal: isModal, onSuccess: function (selectedPromptId, inheritRepoConfig) {
+                        console.log("from promptSelection onSuccess");
+                        console.log({ selectedPromptId: selectedPromptId, inheritRepoConfig: inheritRepoConfig });
+                        setIsSubmitting(true);
                         var startIndex = (selectedHeaderRow || 0) + 1;
                         var mappedRows = [];
                         data.rows.slice(startIndex).forEach(function (row) {
@@ -54583,19 +54627,13 @@ function Main(props) {
                                 return ({ key: key, name: key });
                             }),
                             rows: mappedRows,
+                            meta: {
+                                defaultPromptId: selectedPromptId,
+                                inheritRepoConfig: inheritRepoConfig
+                            }
                         };
                         onComplete && onComplete(onCompleteData);
                         setIsSubmitting(false);
-                        goNext();
-                    }, isSubmitting: isSubmitting, onCancel: skipHeader ? reload : function () { return goBack(StepEnum.RowSelection); } }));
-            case StepEnum.PromptSelection:
-                return jsxRuntime.jsx(PromptSelection, { prompts: prompts, reload: reload, close: requestClose, isModal: isModal, onSuccess: function (selectedPromptId, inheritRepoConfig) {
-                        console.log("from promptSelection onSuccess");
-                        console.log({ selectedPromptId: selectedPromptId, inheritRepoConfig: inheritRepoConfig });
-                        setData((function (prevState) { return (__assign$1(__assign$1({}, prevState), { meta: {
-                                defaultPromptId: selectedPromptId,
-                                inheritRepoConfig: inheritRepoConfig
-                            } })); }));
                         goNext();
                     } });
             case StepEnum.Complete:
