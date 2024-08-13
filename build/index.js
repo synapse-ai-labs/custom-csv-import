@@ -54402,7 +54402,7 @@ function PromptSelection(_a) {
         { value: 'vanilla', label: 'Vanilla' },
     ];
     var handleCheckboxSelection = function (e) {
-        console.log({ checkboxSelection: e.target.checked() });
+        console.log({ checkboxSelection: e.target.checked });
         setInheritRepoPrompt(e.target.checked);
     };
     var handleCompleteClick = function (e) {
@@ -54410,17 +54410,17 @@ function PromptSelection(_a) {
         e.preventDefault();
         onSuccess(selectedPrompt, inheritRepoPrompt);
     };
-    return (jsxRuntime.jsx(Box$1, __assign$1({ className: style.content }, { children: jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [jsxRuntime.jsx("span", __assign$1({ className: style.icon }, { children: jsxRuntime.jsx(PiCheckBold, {}) })), jsxRuntime.jsx("div", { children: t("Select a Prompt") }), jsxRuntime.jsxs("div", { children: [jsxRuntime.jsx(StateManagedSelect$1
+    return (jsxRuntime.jsx(Box$1, __assign$1({ className: style.content }, { children: jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [jsxRuntime.jsx("div", { children: t("Select a Prompt") }), jsxRuntime.jsx("div", { children: jsxRuntime.jsx(StateManagedSelect$1
+                    // value={selectedOption}
+                    , { 
                         // value={selectedOption}
-                        , { 
-                            // value={selectedOption}
-                            styles: {
-                                control: function (baseStyles, state) { return (__assign$1(__assign$1({}, baseStyles), { backgroundColor: 'white' })); },
-                                option: function (styles, _a) {
-                                    _a.data; var isDisabled = _a.isDisabled; _a.isFocused; _a.isSelected;
-                                    return __assign$1(__assign$1({}, styles), { color: 'black', cursor: isDisabled ? 'not-allowed' : 'default' });
-                                },
-                            }, onChange: function (selectedOption) { return handleChange(selectedOption); }, options: options }), jsxRuntime.jsx(Checkbox, { checked: inheritRepoPrompt, onChange: function (e) { return handleCheckboxSelection(e); } })] }), jsxRuntime.jsx("div", __assign$1({ className: style.actions }, { children: isModal && (jsxRuntime.jsx(Button$1, __assign$1({ onClick: handleCompleteClick, type: "submit", colorScheme: "primary", leftIcon: jsxRuntime.jsx(PiCheckBold, {}) }, { children: t("Complete") }))) }))] }) })));
+                        styles: {
+                            control: function (baseStyles, state) { return (__assign$1(__assign$1({}, baseStyles), { backgroundColor: 'white' })); },
+                            option: function (styles, _a) {
+                                _a.data; var isDisabled = _a.isDisabled; _a.isFocused; _a.isSelected;
+                                return __assign$1(__assign$1({}, styles), { color: 'black', cursor: isDisabled ? 'not-allowed' : 'default' });
+                            },
+                        }, onChange: function (selectedOption) { return handleChange(selectedOption); }, options: options }) }), jsxRuntime.jsx("div", { children: jsxRuntime.jsx(Checkbox, __assign$1({ checked: inheritRepoPrompt, onChange: function (e) { return handleCheckboxSelection(e); } }, { children: "Inherit repository review prompts" })) }), jsxRuntime.jsx("div", __assign$1({ className: style.actions }, { children: isModal && (jsxRuntime.jsx(Button$1, __assign$1({ onClick: handleCompleteClick, type: "submit", colorScheme: "primary", leftIcon: jsxRuntime.jsx(PiCheckBold, {}) }, { children: t("Complete") }))) }))] }) })));
 }
 
 function Main(props) {
