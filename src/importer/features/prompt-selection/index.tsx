@@ -5,6 +5,7 @@ import { PromptSelectionProps } from "./types";
 import style from "./style/Complete.module.scss";
 import { PiArrowCounterClockwise, PiCheckBold } from "react-icons/pi";
 import Select from 'react-select';
+import Checkbox from "../../components/Checkbox";
 
 export default function PromptSelection({ reload, close, isModal, prompts }: PromptSelectionProps) {
   const { t } = useTranslation();
@@ -24,6 +25,11 @@ export default function PromptSelection({ reload, close, isModal, prompts }: Pro
     { value: 'vanilla', label: 'Vanilla' },
   ];
 
+  const handleCheckboxSelection = (e: any) => {
+    console.log({checkboxSelection: e.target});
+  }
+
+
   return (
     <Box className={style.content}>
       <>
@@ -37,19 +43,23 @@ export default function PromptSelection({ reload, close, isModal, prompts }: Pro
             styles={{
               control: (baseStyles, state) => ({
                 ...baseStyles,
-                backgroundColor: 'red',
+                backgroundColor: 'white',
               }),
               option: (styles, { data, isDisabled, isFocused, isSelected }) => {
                 return {
                   ...styles,
-                  backgroundColor: isDisabled ? 'red' : 'green',
-                  color: '#FFF',
+                  color: 'black',
                   cursor: isDisabled ? 'not-allowed' : 'default',
                 }
               },
             }}
             onChange={(e: any) => handleChange(e)}
             options={options}
+          />
+
+          <Checkbox
+              checked={true}
+              onChange={(e) => handleCheckboxSelection(e)}
           />
           <Button type="button" colorScheme="secondary" leftIcon={<PiArrowCounterClockwise />} onClick={reload}>
             {t("Upload another file")}

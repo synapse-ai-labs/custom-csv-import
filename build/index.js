@@ -54398,17 +54398,20 @@ function PromptSelection(_a) {
         { value: 'strawberry', label: 'Strawberry' },
         { value: 'vanilla', label: 'Vanilla' },
     ];
+    var handleCheckboxSelection = function (e) {
+        console.log({ checkboxSelection: e.target });
+    };
     return (jsxRuntime.jsx(Box$1, __assign$1({ className: style.content }, { children: jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [jsxRuntime.jsx("span", __assign$1({ className: style.icon }, { children: jsxRuntime.jsx(PiCheckBold, {}) })), jsxRuntime.jsx("div", { children: t("Select a Prompt") }), jsxRuntime.jsxs("div", __assign$1({ className: style.actions }, { children: [jsxRuntime.jsx(StateManagedSelect$1
                         // value={selectedOption}
                         , { 
                             // value={selectedOption}
                             styles: {
-                                control: function (baseStyles, state) { return (__assign$1(__assign$1({}, baseStyles), { backgroundColor: 'red' })); },
+                                control: function (baseStyles, state) { return (__assign$1(__assign$1({}, baseStyles), { backgroundColor: 'white' })); },
                                 option: function (styles, _a) {
                                     _a.data; var isDisabled = _a.isDisabled; _a.isFocused; _a.isSelected;
-                                    return __assign$1(__assign$1({}, styles), { backgroundColor: isDisabled ? 'red' : 'green', color: '#FFF', cursor: isDisabled ? 'not-allowed' : 'default' });
+                                    return __assign$1(__assign$1({}, styles), { color: 'black', cursor: isDisabled ? 'not-allowed' : 'default' });
                                 },
-                            }, onChange: function (e) { return handleChange(e); }, options: options }), jsxRuntime.jsx(Button$1, __assign$1({ type: "button", colorScheme: "secondary", leftIcon: jsxRuntime.jsx(PiArrowCounterClockwise, {}), onClick: reload }, { children: t("Upload another file") })), isModal && (jsxRuntime.jsx(Button$1, __assign$1({ type: "button", colorScheme: "primary", leftIcon: jsxRuntime.jsx(PiCheckBold, {}), onClick: close }, { children: t("Done") })))] }))] }) })));
+                            }, onChange: function (e) { return handleChange(e); }, options: options }), jsxRuntime.jsx(Checkbox, { checked: true, onChange: function (e) { return handleCheckboxSelection(e); } }), jsxRuntime.jsx(Button$1, __assign$1({ type: "button", colorScheme: "secondary", leftIcon: jsxRuntime.jsx(PiArrowCounterClockwise, {}), onClick: reload }, { children: t("Upload another file") })), isModal && (jsxRuntime.jsx(Button$1, __assign$1({ type: "button", colorScheme: "primary", leftIcon: jsxRuntime.jsx(PiCheckBold, {}), onClick: close }, { children: t("Done") })))] }))] }) })));
 }
 
 function Main(props) {
