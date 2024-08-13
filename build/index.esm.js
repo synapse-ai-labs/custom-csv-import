@@ -32825,6 +32825,7 @@ function useMapColumnsTable(uploadColumns, templateColumns, columnsValues, isLoa
         var _a;
         return (__assign$1(__assign$1({}, acc), (_a = {}, _a[tc.name] = { value: tc.key, required: tc.required }, _a)));
     }, {}); }, [JSON.stringify(templateColumns)]);
+    console.log({ templateFields: templateFields, selectedValues: selectedValues });
     var handleTemplateChange = function (uploadColumnIndex, key) {
         setValues(function (prev) {
             var _a;
@@ -32853,6 +32854,7 @@ function useMapColumnsTable(uploadColumns, templateColumns, columnsValues, isLoa
             var name = uc.name, sample_data = uc.sample_data;
             var suggestion = (values === null || values === void 0 ? void 0 : values[index]) || {};
             var samples = sample_data.filter(function (d) { return d; });
+            console.log({ suggestionKey: suggestion.key });
             return _a = {},
                 _a[yourFileColumn] = {
                     raw: name || false,
