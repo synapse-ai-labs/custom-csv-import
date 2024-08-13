@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@chakra-ui/button";
 import Box from "../../components/Box";
@@ -7,8 +8,14 @@ import { PiArrowCounterClockwise, PiCheckBold } from "react-icons/pi";
 import Select from 'react-select';
 import Checkbox from "../../components/Checkbox";
 
-export default function PromptSelection({ reload, close, isModal, prompts }: PromptSelectionProps) {
+export default function PromptSelection({ reload, close, isModal, prompts, onSuccess }: PromptSelectionProps) {
   const { t } = useTranslation();
+
+  const [selectedPrompt, setSelectedPrompt] = useState<string>();
+
+  const [inheritRepoPrompt, setInheritRepoPrompt] = useState(true);
+
+
   console.log({prompts});
 
   const setSelectedValues = () => {
@@ -16,7 +23,8 @@ export default function PromptSelection({ reload, close, isModal, prompts }: Pro
   }
 
   const handleChange = (e: any) => {
-    console.log({selectedOption: e.target});
+    console.log({selectedOption: e.target.value});
+    setSelectedPrompt(e.target.value)
   }
 
   const options = [
@@ -27,6 +35,14 @@ export default function PromptSelection({ reload, close, isModal, prompts }: Pro
 
   const handleCheckboxSelection = (e: any) => {
     console.log({checkboxSelection: e.target});
+    setInheritRepoPrompt(e.target.checked);
+    e.preventDefault();
+    onSuccess();
+  }
+
+  const handleCompleteClick = (e: any) => {
+    console.log("handleCompleteClick clicked");
+
   }
 
 
@@ -65,8 +81,8 @@ export default function PromptSelection({ reload, close, isModal, prompts }: Pro
             {t("Upload another file")}
           </Button>
           {isModal && (
-            <Button type="button" colorScheme="primary" leftIcon={<PiCheckBold />} onClick={close}>
-              {t("Done")}
+            <Button onClick={handleCompleteClick} type="submit" colorScheme="primary" leftIcon={<PiCheckBold />} >
+              {t("Complete")}
             </Button>
           )}
         </div>

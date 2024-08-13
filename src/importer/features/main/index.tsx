@@ -248,7 +248,7 @@ export default function Main(props: CSVImporterProps) {
           />
         );
       case StepEnum.PromptSelection:
-        return <PromptSelection prompts={prompts} reload={reload} close={requestClose} isModal={isModal} />;
+        return <PromptSelection prompts={prompts} reload={reload} close={requestClose} isModal={isModal} onSuccess={() => goNext()}/>;
       case StepEnum.Complete:
         return <Complete reload={reload} close={requestClose} isModal={isModal} />;
       default:
