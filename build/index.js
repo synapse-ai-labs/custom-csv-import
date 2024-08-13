@@ -54402,7 +54402,9 @@ function PromptSelection(_a) {
                         // value={selectedOption}
                         , { 
                             // value={selectedOption}
-                            onChange: function (e) { return handleChange(e); }, options: options }), jsxRuntime.jsx(Button$1, __assign$1({ type: "button", colorScheme: "secondary", leftIcon: jsxRuntime.jsx(PiArrowCounterClockwise, {}), onClick: reload }, { children: t("Upload another file") })), isModal && (jsxRuntime.jsx(Button$1, __assign$1({ type: "button", colorScheme: "primary", leftIcon: jsxRuntime.jsx(PiCheckBold, {}), onClick: close }, { children: t("Done") })))] }))] }) })));
+                            styles: {
+                                control: function (baseStyles, state) { return (__assign$1(__assign$1({}, baseStyles), { backgroundColor: 'red' })); }
+                            }, onChange: function (e) { return handleChange(e); }, options: options }), jsxRuntime.jsx(Button$1, __assign$1({ type: "button", colorScheme: "secondary", leftIcon: jsxRuntime.jsx(PiArrowCounterClockwise, {}), onClick: reload }, { children: t("Upload another file") })), isModal && (jsxRuntime.jsx(Button$1, __assign$1({ type: "button", colorScheme: "primary", leftIcon: jsxRuntime.jsx(PiCheckBold, {}), onClick: close }, { children: t("Done") })))] }))] }) })));
 }
 
 function Main(props) {
