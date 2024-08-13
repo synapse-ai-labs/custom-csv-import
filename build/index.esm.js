@@ -54394,7 +54394,7 @@ function PromptSelection(_a) {
                                 _a.data; var isDisabled = _a.isDisabled; _a.isFocused; _a.isSelected;
                                 return __assign$1(__assign$1({}, styles), { color: 'black', cursor: isDisabled ? 'not-allowed' : 'default' });
                             },
-                        }, onChange: function (selectedOption) { return handleChange(selectedOption); }, options: options }) }), jsx("div", { children: jsx(Checkbox, __assign$1({ checked: inheritRepoPrompt, onChange: function (e) { return handleCheckboxSelection(e); } }, { children: "Inherit repository review prompts" })) }), jsx("div", __assign$1({ className: style.actions }, { children: isModal && (jsx(Button$1, __assign$1({ onClick: handleCompleteClick, type: "submit", colorScheme: "primary", leftIcon: jsx(PiCheckBold, {}) }, { children: t("Complete") }))) }))] }) })));
+                        }, onChange: function (selectedOption) { return handleChange(selectedOption); }, options: options }) }), jsxs("div", { children: [jsx("div", { children: "Inherit repository review prompts" }), jsx(Checkbox, { checked: inheritRepoPrompt, onChange: function (e) { return handleCheckboxSelection(e); } })] }), jsx("div", __assign$1({ className: style.actions }, { children: isModal && (jsx(Button$1, __assign$1({ onClick: handleCompleteClick, type: "submit", colorScheme: "primary", leftIcon: jsx(PiCheckBold, {}) }, { children: t("Complete") }))) }))] }) })));
 }
 
 function Main(props) {

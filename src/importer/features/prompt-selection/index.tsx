@@ -4,7 +4,7 @@ import { Button } from "@chakra-ui/button";
 import Box from "../../components/Box";
 import { PromptSelectionProps } from "./types";
 import style from "./style/Complete.module.scss";
-import { PiArrowCounterClockwise, PiCheckBold } from "react-icons/pi";
+import { PiCheckBold } from "react-icons/pi";
 import Select from 'react-select';
 import Checkbox from "../../components/Checkbox";
 
@@ -48,9 +48,6 @@ export default function PromptSelection({ reload, close, isModal, prompts, onSuc
   return (
     <Box className={style.content}>
       <>
-        {/*<span className={style.icon}>*/}
-        {/*  <PiCheckBold />*/}
-        {/*</span>*/}
         <div>{t("Select a Prompt")}</div>
         <div>
           <Select
@@ -73,10 +70,11 @@ export default function PromptSelection({ reload, close, isModal, prompts, onSuc
           />
         </div>
         <div>
+          <div>Inherit repository review prompts</div>
           <Checkbox
               checked={inheritRepoPrompt}
               onChange={(e) => handleCheckboxSelection(e)}
-          >Inherit repository review prompts</Checkbox>
+          />
         </div>
         <div className={style.actions}>
           {isModal && (
