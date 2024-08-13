@@ -54389,8 +54389,8 @@ var StateManagedSelect$1 = StateManagedSelect;
 function PromptSelection(_a) {
     var reload = _a.reload; _a.close; var isModal = _a.isModal, prompts = _a.prompts, onSuccess = _a.onSuccess;
     var t = useTranslation().t;
-    var _b = React.useState(); _b[0]; var setSelectedPrompt = _b[1];
-    var _c = React.useState(true); _c[0]; var setInheritRepoPrompt = _c[1];
+    var _b = React.useState(), selectedPrompt = _b[0], setSelectedPrompt = _b[1];
+    var _c = React.useState(true), inheritRepoPrompt = _c[0], setInheritRepoPrompt = _c[1];
     console.log({ prompts: prompts });
     var handleChange = function (selectedValue) {
         console.log({ selectedOption: selectedValue });
@@ -54408,7 +54408,7 @@ function PromptSelection(_a) {
     var handleCompleteClick = function (e) {
         console.log("handleCompleteClick clicked");
         e.preventDefault();
-        onSuccess();
+        onSuccess(selectedPrompt, inheritRepoPrompt);
     };
     return (jsxRuntime.jsx(Box$1, __assign$1({ className: style.content }, { children: jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [jsxRuntime.jsx("span", __assign$1({ className: style.icon }, { children: jsxRuntime.jsx(PiCheckBold, {}) })), jsxRuntime.jsx("div", { children: t("Select a Prompt") }), jsxRuntime.jsxs("div", __assign$1({ className: style.actions }, { children: [jsxRuntime.jsx(StateManagedSelect$1
                         // value={selectedOption}
@@ -54599,7 +54599,11 @@ function Main(props) {
                         goNext();
                     }, isSubmitting: isSubmitting, onCancel: skipHeader ? reload : function () { return goBack(StepEnum.RowSelection); } }));
             case StepEnum.PromptSelection:
-                return jsxRuntime.jsx(PromptSelection, { prompts: prompts, reload: reload, close: requestClose, isModal: isModal, onSuccess: function () { return goNext(); } });
+                return jsxRuntime.jsx(PromptSelection, { prompts: prompts, reload: reload, close: requestClose, isModal: isModal, onSuccess: function (selectedPromptId, inheritRepoConfig) {
+                        console.log("from promptSelection onSuccess");
+                        console.log({ selectedPromptId: selectedPromptId, inheritRepoConfig: inheritRepoConfig });
+                        goNext();
+                    } });
             case StepEnum.Complete:
                 return jsxRuntime.jsx(Complete, { reload: reload, close: requestClose, isModal: isModal });
             default:

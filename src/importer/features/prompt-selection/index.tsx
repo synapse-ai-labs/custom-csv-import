@@ -41,7 +41,7 @@ export default function PromptSelection({ reload, close, isModal, prompts, onSuc
   const handleCompleteClick = (e: any) => {
     console.log("handleCompleteClick clicked");
     e.preventDefault();
-    onSuccess();
+    onSuccess(selectedPrompt!, inheritRepoPrompt);
   }
 
 
