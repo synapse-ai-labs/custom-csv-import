@@ -2,6 +2,7 @@ export enum Steps {
   Upload = "upload",
   RowSelection = "row-selection",
   MapColumns = "map-columns",
+  PromptSelection = "prompt-selection"
 }
 
 export type FileRow = {

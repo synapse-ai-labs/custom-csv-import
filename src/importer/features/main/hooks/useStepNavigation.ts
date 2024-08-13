@@ -34,6 +34,7 @@ const getStepConfig = (skipHeader: boolean) => {
     { label: "Upload", id: Steps.Upload },
     { label: "Select Header", id: Steps.RowSelection, disabled: skipHeader },
     { label: "Map Columns", id: Steps.MapColumns },
+    { label: "Select Review Prompt", id: Steps.PromptSelection },
   ];
 };
 

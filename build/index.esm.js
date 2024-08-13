@@ -32266,6 +32266,7 @@ var Steps;
     Steps["Upload"] = "upload";
     Steps["RowSelection"] = "row-selection";
     Steps["MapColumns"] = "map-columns";
+    Steps["PromptSelection"] = "prompt-selection";
 })(Steps || (Steps = {}));
 
 function useMutableLocalStorage(key, initialValue) {
@@ -32339,6 +32340,7 @@ var getStepConfig = function (skipHeader) {
         { label: "Upload", id: Steps.Upload },
         { label: "Select Header", id: Steps.RowSelection, disabled: skipHeader },
         { label: "Map Columns", id: Steps.MapColumns },
+        { label: "Select Review Prompt", id: Steps.PromptSelection },
     ];
 };
 function useStepNavigation(initialStep, skipHeader) {
