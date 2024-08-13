@@ -54405,11 +54405,7 @@ function PromptSelection(_a) {
         e.preventDefault();
         onSuccess(selectedPrompt, inheritRepoPrompt);
     };
-    return (jsxRuntime.jsx(Box$1, __assign$1({ className: style.content }, { children: jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [jsxRuntime.jsxs("div", __assign$1({ style: { display: 'flex', alignItems: 'center' } }, { children: [jsxRuntime.jsx("span", { children: t("Select review prompt") }), jsxRuntime.jsx("span", __assign$1({ style: { marginLeft: 10 } }, { children: jsxRuntime.jsx(StateManagedSelect$1
-                            // value={selectedOption}
-                            , { 
-                                // value={selectedOption}
-                                placeholder: 'Select review prompt', styles: {
+    return (jsxRuntime.jsx(Box$1, __assign$1({ className: style.content }, { children: jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [jsxRuntime.jsxs("div", __assign$1({ style: { display: 'flex', alignItems: 'center' } }, { children: [jsxRuntime.jsx("span", { children: t("Select review prompt") }), jsxRuntime.jsx("span", __assign$1({ style: { marginLeft: 10 } }, { children: jsxRuntime.jsx(StateManagedSelect$1, { required: true, placeholder: 'Select review prompt', styles: {
                                     control: function (baseStyles, state) { return (__assign$1(__assign$1({}, baseStyles), { backgroundColor: 'white', width: 250 })); },
                                     option: function (styles, _a) {
                                         _a.data; var isDisabled = _a.isDisabled; _a.isFocused; _a.isSelected;

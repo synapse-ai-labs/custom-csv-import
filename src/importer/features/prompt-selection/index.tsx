@@ -46,7 +46,7 @@ export default function PromptSelection({ isModal, prompts, onSuccess }: PromptS
           <span>{t("Select review prompt")}</span>
           <span style={{marginLeft: 10}}>
             <Select
-              // value={selectedOption}
+              required={true}
               placeholder={'Select review prompt'}
               styles={{
                 control: (baseStyles, state) => ({
