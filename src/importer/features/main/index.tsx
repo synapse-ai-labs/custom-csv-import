@@ -143,12 +143,13 @@ export default function Main(props: CSVImporterProps) {
                       complete: function (results) {
                         const csvData = results.data as Array<Array<string>>;
                         const rows: FileRow[] = csvData.filter(isNotBlankRow).map((row: string[], index: number) => ({ index, values: row }));
-                        setData({
+                        setData((prevState => ({
+                          ...prevState,
                           fileName: file.name,
                           rows: rows,
                           sheetList: [],
                           errors: results.errors.map((error) => error.message),
-                        });
+                        })));
                         goNext();
                       },
                     });
@@ -159,12 +160,13 @@ export default function Main(props: CSVImporterProps) {
                     const sheetList = workbook.SheetNames;
                     const data = XLSX.utils.sheet_to_json(workbook.Sheets[sheetList[0]], { header: 1 }) as Array<Array<string>>;
                     const rows: FileRow[] = data.filter(isNotBlankRow).map((row: string[], index: number) => ({ index, values: row }));
-                    setData({
+                    setData((prevState => ({
+                      ...prevState,
                       fileName: file.name,
                       rows: rows,
                       sheetList: sheetList,
                       errors: [], // TODO: Handle any parsing errors
-                    });
+                    })));
                     goNext();
                     break;
                 }
@@ -256,6 +258,15 @@ export default function Main(props: CSVImporterProps) {
           onSuccess={(selectedPromptId: string, inheritRepoConfig: boolean) => {
             console.log("from promptSelection onSuccess");
             console.log({selectedPromptId, inheritRepoConfig});
+
+            setData((prevState => ({
+              ...prevState,
+              meta: {
+                defaultPromptId: selectedPromptId,
+                inheritRepoConfig: inheritRepoConfig
+              }
+            })));
+
             goNext();
           }
         }/>;

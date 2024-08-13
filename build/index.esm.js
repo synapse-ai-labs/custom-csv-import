@@ -54367,8 +54367,8 @@ function PromptSelection(_a) {
     var _c = useState(true), inheritRepoPrompt = _c[0], setInheritRepoPrompt = _c[1];
     console.log({ prompts: prompts });
     var handleChange = function (selectedValue) {
-        console.log({ selectedOption: selectedValue });
-        setSelectedPrompt(selectedValue);
+        console.log({ selectedOption: selectedValue.value });
+        setSelectedPrompt(selectedValue.value);
     };
     var options = [
         { value: 'chocolate', label: 'Chocolate' },
@@ -54384,17 +54384,17 @@ function PromptSelection(_a) {
         e.preventDefault();
         onSuccess(selectedPrompt, inheritRepoPrompt);
     };
-    return (jsx(Box$1, __assign$1({ className: style.content }, { children: jsxs(Fragment$1, { children: [jsx("div", { children: t("Select a Prompt") }), jsx("div", { children: jsx(StateManagedSelect$1
-                    // value={selectedOption}
-                    , { 
-                        // value={selectedOption}
-                        styles: {
-                            control: function (baseStyles, state) { return (__assign$1(__assign$1({}, baseStyles), { backgroundColor: 'white' })); },
-                            option: function (styles, _a) {
-                                _a.data; var isDisabled = _a.isDisabled; _a.isFocused; _a.isSelected;
-                                return __assign$1(__assign$1({}, styles), { color: 'black', cursor: isDisabled ? 'not-allowed' : 'default' });
-                            },
-                        }, onChange: function (selectedOption) { return handleChange(selectedOption); }, options: options }) }), jsxs("div", { children: [jsx("div", { children: "Inherit repository review prompts" }), jsx(Checkbox, { checked: inheritRepoPrompt, onChange: function (e) { return handleCheckboxSelection(e); } })] }), jsx("div", __assign$1({ className: style.actions }, { children: isModal && (jsx(Button$1, __assign$1({ onClick: handleCompleteClick, type: "submit", colorScheme: "primary", leftIcon: jsx(PiCheckBold, {}) }, { children: t("Complete") }))) }))] }) })));
+    return (jsx(Box$1, __assign$1({ className: style.content }, { children: jsxs(Fragment$1, { children: [jsxs("div", __assign$1({ style: { display: 'flex' } }, { children: [jsx("div", { children: t("Select a Prompt") }), jsx("div", __assign$1({ style: { marginLeft: 10 } }, { children: jsx(StateManagedSelect$1
+                            // value={selectedOption}
+                            , { 
+                                // value={selectedOption}
+                                placeholder: 'Select review prompt', styles: {
+                                    control: function (baseStyles, state) { return (__assign$1(__assign$1({}, baseStyles), { backgroundColor: 'white', width: 250 })); },
+                                    option: function (styles, _a) {
+                                        _a.data; var isDisabled = _a.isDisabled; _a.isFocused; _a.isSelected;
+                                        return __assign$1(__assign$1({}, styles), { color: 'black', cursor: isDisabled ? 'not-allowed' : 'default' });
+                                    },
+                                }, onChange: function (selectedOption) { return handleChange(selectedOption); }, options: options }) }))] })), jsxs("div", __assign$1({ style: { display: 'flex' } }, { children: [jsx("div", { children: "Inherit repository review prompts" }), jsx(Checkbox, { style: { marginLeft: 10 }, checked: inheritRepoPrompt, onChange: function (e) { return handleCheckboxSelection(e); } })] })), jsx("div", __assign$1({ className: style.actions }, { children: isModal && (jsx(Button$1, __assign$1({ onClick: handleCompleteClick, type: "submit", colorScheme: "primary", leftIcon: jsx(PiCheckBold, {}) }, { children: t("Complete") }))) }))] }) })));
 }
 
 function Main(props) {
@@ -54478,7 +54478,7 @@ function Main(props) {
                             reader = new FileReader();
                             isNotBlankRow = function (row) { return row.some(function (cell) { return cell.toString().trim() !== ""; }); };
                             reader.onload = function (e) { return __awaiter(_this, void 0, void 0, function () {
-                                var bstr, workbook, sheetList, data_1, rows;
+                                var bstr, workbook, sheetList_1, data_1, rows_1;
                                 var _a;
                                 return __generator(this, function (_b) {
                                     bstr = (_a = e === null || e === void 0 ? void 0 : e.target) === null || _a === void 0 ? void 0 : _a.result;
@@ -54491,12 +54491,7 @@ function Main(props) {
                                                 complete: function (results) {
                                                     var csvData = results.data;
                                                     var rows = csvData.filter(isNotBlankRow).map(function (row, index) { return ({ index: index, values: row }); });
-                                                    setData({
-                                                        fileName: file.name,
-                                                        rows: rows,
-                                                        sheetList: [],
-                                                        errors: results.errors.map(function (error) { return error.message; }),
-                                                    });
+                                                    setData((function (prevState) { return (__assign$1(__assign$1({}, prevState), { fileName: file.name, rows: rows, sheetList: [], errors: results.errors.map(function (error) { return error.message; }) })); }));
                                                     goNext();
                                                 },
                                             });
@@ -54504,15 +54499,10 @@ function Main(props) {
                                         case "xlsx":
                                         case "xls":
                                             workbook = readSync(bstr, { type: "binary" });
-                                            sheetList = workbook.SheetNames;
-                                            data_1 = utils.sheet_to_json(workbook.Sheets[sheetList[0]], { header: 1 });
-                                            rows = data_1.filter(isNotBlankRow).map(function (row, index) { return ({ index: index, values: row }); });
-                                            setData({
-                                                fileName: file.name,
-                                                rows: rows,
-                                                sheetList: sheetList,
-                                                errors: [], // TODO: Handle any parsing errors
-                                            });
+                                            sheetList_1 = workbook.SheetNames;
+                                            data_1 = utils.sheet_to_json(workbook.Sheets[sheetList_1[0]], { header: 1 });
+                                            rows_1 = data_1.filter(isNotBlankRow).map(function (row, index) { return ({ index: index, values: row }); });
+                                            setData((function (prevState) { return (__assign$1(__assign$1({}, prevState), { fileName: file.name, rows: rows_1, sheetList: sheetList_1, errors: [] })); }));
                                             goNext();
                                             break;
                                     }
@@ -54576,6 +54566,10 @@ function Main(props) {
                 return jsx(PromptSelection, { prompts: prompts, reload: reload, close: requestClose, isModal: isModal, onSuccess: function (selectedPromptId, inheritRepoConfig) {
                         console.log("from promptSelection onSuccess");
                         console.log({ selectedPromptId: selectedPromptId, inheritRepoConfig: inheritRepoConfig });
+                        setData((function (prevState) { return (__assign$1(__assign$1({}, prevState), { meta: {
+                                defaultPromptId: selectedPromptId,
+                                inheritRepoConfig: inheritRepoConfig
+                            } })); }));
                         goNext();
                     } });
             case StepEnum.Complete:

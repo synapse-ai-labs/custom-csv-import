@@ -7,6 +7,7 @@ import style from "./style/Complete.module.scss";
 import { PiCheckBold } from "react-icons/pi";
 import Select from 'react-select';
 import Checkbox from "../../components/Checkbox";
+import {flexbox} from "@chakra-ui/react";
 
 export default function PromptSelection({ reload, close, isModal, prompts, onSuccess }: PromptSelectionProps) {
   const { t } = useTranslation();
@@ -22,9 +23,9 @@ export default function PromptSelection({ reload, close, isModal, prompts, onSuc
     console.log("setting selected values");
   }
 
-  const handleChange = (selectedValue: string) => {
-    console.log({selectedOption: selectedValue});
-    setSelectedPrompt(selectedValue)
+  const handleChange = (selectedValue: any) => {
+    console.log({selectedOption: selectedValue.value});
+    setSelectedPrompt(selectedValue.value)
   }
 
   const options = [
@@ -48,32 +49,37 @@ export default function PromptSelection({ reload, close, isModal, prompts, onSuc
   return (
     <Box className={style.content}>
       <>
-        <div>{t("Select a Prompt")}</div>
-        <div>
-          <Select
-            // value={selectedOption}
-            styles={{
-              control: (baseStyles, state) => ({
-                ...baseStyles,
-                backgroundColor: 'white',
-              }),
-              option: (styles, { data, isDisabled, isFocused, isSelected }) => {
-                return {
-                  ...styles,
-                  color: 'black',
-                  cursor: isDisabled ? 'not-allowed' : 'default',
-                }
-              },
-            }}
-            onChange={(selectedOption: any) => handleChange(selectedOption)}
-            options={options}
-          />
+        <div style={{display: 'flex'}}>
+          <div>{t("Select a Prompt")}</div>
+          <div style={{marginLeft: 10}}>
+            <Select
+              // value={selectedOption}
+              placeholder={'Select review prompt'}
+              styles={{
+                control: (baseStyles, state) => ({
+                  ...baseStyles,
+                  backgroundColor: 'white',
+                  width: 250
+                }),
+                option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+                  return {
+                    ...styles,
+                    color: 'black',
+                    cursor: isDisabled ? 'not-allowed' : 'default',
+                  }
+                },
+              }}
+              onChange={(selectedOption: any) => handleChange(selectedOption)}
+              options={options}
+            />
+          </div>
         </div>
-        <div>
+        <div style={{display: 'flex'}}>
           <div>Inherit repository review prompts</div>
           <Checkbox
-              checked={inheritRepoPrompt}
-              onChange={(e) => handleCheckboxSelection(e)}
+            style={{marginLeft: 10}}
+            checked={inheritRepoPrompt}
+            onChange={(e) => handleCheckboxSelection(e)}
           />
         </div>
         <div className={style.actions}>
