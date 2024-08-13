@@ -4,25 +4,25 @@ import Box from "../../components/Box";
 import { PromptSelectionProps } from "./types";
 import style from "./style/Complete.module.scss";
 import { PiArrowCounterClockwise, PiCheckBold } from "react-icons/pi";
-import DropdownFields from "../map-columns/components/DropDownFields";
+import Select from 'react-select';
 
 export default function PromptSelection({ reload, close, isModal, prompts }: PromptSelectionProps) {
   const { t } = useTranslation();
-  let templateFields: any[] = [];
-  // if (prompts && prompts.length > 0) {
-  //
-  //   templateFields = prompts.reduce((acc, item) => {
-  //     acc[item.id] = {
-  //       value: item.id,
-  //       name: item.label
-  //     }
-  //   }, {})
-  // }
   console.log({prompts});
 
   const setSelectedValues = () => {
     console.log("setting selected values");
   }
+
+  const handleChange = (e: any) => {
+    console.log({selectedOption: e.target});
+  }
+
+  const options = [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' },
+  ];
 
   return (
     <Box className={style.content}>
@@ -32,16 +32,11 @@ export default function PromptSelection({ reload, close, isModal, prompts }: Pro
         </span>
         <div>{t("Select a Prompt")}</div>
         <div className={style.actions}>
-          <DropdownFields
-              options={{1: {name: 'abc', value: 'abc'}}}
-              // options={templateFields}
-              value={"1"}
-              placeholder={t("Select review prompt")}
-              onChange={(key: string) => console.log({selectedKey: key})}
-              selectedValues={[{key: "1", selected: true}]}
-              updateSelectedValues={setSelectedValues}
-            />
-
+          <Select
+            // value={selectedOption}
+            onChange={(e: any) => handleChange(e)}
+            options={options}
+          />
           <Button type="button" colorScheme="secondary" leftIcon={<PiArrowCounterClockwise />} onClick={reload}>
             {t("Upload another file")}
           </Button>
