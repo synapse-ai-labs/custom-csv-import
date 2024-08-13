@@ -54392,9 +54392,9 @@ function PromptSelection(_a) {
     var _b = React.useState(); _b[0]; var setSelectedPrompt = _b[1];
     var _c = React.useState(true); _c[0]; var setInheritRepoPrompt = _c[1];
     console.log({ prompts: prompts });
-    var handleChange = function (e) {
-        console.log({ selectedOption: e.target.value });
-        setSelectedPrompt(e.target.value);
+    var handleChange = function (selectedValue) {
+        console.log({ selectedOption: selectedValue });
+        setSelectedPrompt(selectedValue);
     };
     var options = [
         { value: 'chocolate', label: 'Chocolate' },
@@ -54402,13 +54402,13 @@ function PromptSelection(_a) {
         { value: 'vanilla', label: 'Vanilla' },
     ];
     var handleCheckboxSelection = function (e) {
-        console.log({ checkboxSelection: e.target });
+        console.log({ checkboxSelection: e.target.checked() });
         setInheritRepoPrompt(e.target.checked);
-        e.preventDefault();
-        onSuccess();
     };
     var handleCompleteClick = function (e) {
         console.log("handleCompleteClick clicked");
+        e.preventDefault();
+        onSuccess();
     };
     return (jsxRuntime.jsx(Box$1, __assign$1({ className: style.content }, { children: jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [jsxRuntime.jsx("span", __assign$1({ className: style.icon }, { children: jsxRuntime.jsx(PiCheckBold, {}) })), jsxRuntime.jsx("div", { children: t("Select a Prompt") }), jsxRuntime.jsxs("div", __assign$1({ className: style.actions }, { children: [jsxRuntime.jsx(StateManagedSelect$1
                         // value={selectedOption}
@@ -54420,7 +54420,7 @@ function PromptSelection(_a) {
                                     _a.data; var isDisabled = _a.isDisabled; _a.isFocused; _a.isSelected;
                                     return __assign$1(__assign$1({}, styles), { color: 'black', cursor: isDisabled ? 'not-allowed' : 'default' });
                                 },
-                            }, onChange: function (e) { return handleChange(e); }, options: options }), jsxRuntime.jsx(Checkbox, { checked: true, onChange: function (e) { return handleCheckboxSelection(e); } }), jsxRuntime.jsx(Button$1, __assign$1({ type: "button", colorScheme: "secondary", leftIcon: jsxRuntime.jsx(PiArrowCounterClockwise, {}), onClick: reload }, { children: t("Upload another file") })), isModal && (jsxRuntime.jsx(Button$1, __assign$1({ onClick: handleCompleteClick, type: "submit", colorScheme: "primary", leftIcon: jsxRuntime.jsx(PiCheckBold, {}) }, { children: t("Complete") })))] }))] }) })));
+                            }, onChange: function (e) { return handleChange(e.target.value); }, options: options }), jsxRuntime.jsx(Checkbox, { checked: true, onChange: function (e) { return handleCheckboxSelection(e); } }), jsxRuntime.jsx(Button$1, __assign$1({ type: "button", colorScheme: "secondary", leftIcon: jsxRuntime.jsx(PiArrowCounterClockwise, {}), onClick: reload }, { children: t("Upload another file") })), isModal && (jsxRuntime.jsx(Button$1, __assign$1({ onClick: handleCompleteClick, type: "submit", colorScheme: "primary", leftIcon: jsxRuntime.jsx(PiCheckBold, {}) }, { children: t("Complete") })))] }))] }) })));
 }
 
 function Main(props) {

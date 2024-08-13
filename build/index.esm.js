@@ -54366,9 +54366,9 @@ function PromptSelection(_a) {
     var _b = useState(); _b[0]; var setSelectedPrompt = _b[1];
     var _c = useState(true); _c[0]; var setInheritRepoPrompt = _c[1];
     console.log({ prompts: prompts });
-    var handleChange = function (e) {
-        console.log({ selectedOption: e.target.value });
-        setSelectedPrompt(e.target.value);
+    var handleChange = function (selectedValue) {
+        console.log({ selectedOption: selectedValue });
+        setSelectedPrompt(selectedValue);
     };
     var options = [
         { value: 'chocolate', label: 'Chocolate' },
@@ -54376,13 +54376,13 @@ function PromptSelection(_a) {
         { value: 'vanilla', label: 'Vanilla' },
     ];
     var handleCheckboxSelection = function (e) {
-        console.log({ checkboxSelection: e.target });
+        console.log({ checkboxSelection: e.target.checked() });
         setInheritRepoPrompt(e.target.checked);
-        e.preventDefault();
-        onSuccess();
     };
     var handleCompleteClick = function (e) {
         console.log("handleCompleteClick clicked");
+        e.preventDefault();
+        onSuccess();
     };
     return (jsx(Box$1, __assign$1({ className: style.content }, { children: jsxs(Fragment$1, { children: [jsx("span", __assign$1({ className: style.icon }, { children: jsx(PiCheckBold, {}) })), jsx("div", { children: t("Select a Prompt") }), jsxs("div", __assign$1({ className: style.actions }, { children: [jsx(StateManagedSelect$1
                         // value={selectedOption}
@@ -54394,7 +54394,7 @@ function PromptSelection(_a) {
                                     _a.data; var isDisabled = _a.isDisabled; _a.isFocused; _a.isSelected;
                                     return __assign$1(__assign$1({}, styles), { color: 'black', cursor: isDisabled ? 'not-allowed' : 'default' });
                                 },
-                            }, onChange: function (e) { return handleChange(e); }, options: options }), jsx(Checkbox, { checked: true, onChange: function (e) { return handleCheckboxSelection(e); } }), jsx(Button$1, __assign$1({ type: "button", colorScheme: "secondary", leftIcon: jsx(PiArrowCounterClockwise, {}), onClick: reload }, { children: t("Upload another file") })), isModal && (jsx(Button$1, __assign$1({ onClick: handleCompleteClick, type: "submit", colorScheme: "primary", leftIcon: jsx(PiCheckBold, {}) }, { children: t("Complete") })))] }))] }) })));
+                            }, onChange: function (e) { return handleChange(e.target.value); }, options: options }), jsx(Checkbox, { checked: true, onChange: function (e) { return handleCheckboxSelection(e); } }), jsx(Button$1, __assign$1({ type: "button", colorScheme: "secondary", leftIcon: jsx(PiArrowCounterClockwise, {}), onClick: reload }, { children: t("Upload another file") })), isModal && (jsx(Button$1, __assign$1({ onClick: handleCompleteClick, type: "submit", colorScheme: "primary", leftIcon: jsx(PiCheckBold, {}) }, { children: t("Complete") })))] }))] }) })));
 }
 
 function Main(props) {

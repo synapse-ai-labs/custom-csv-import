@@ -22,9 +22,9 @@ export default function PromptSelection({ reload, close, isModal, prompts, onSuc
     console.log("setting selected values");
   }
 
-  const handleChange = (e: any) => {
-    console.log({selectedOption: e.target.value});
-    setSelectedPrompt(e.target.value)
+  const handleChange = (selectedValue: string) => {
+    console.log({selectedOption: selectedValue});
+    setSelectedPrompt(selectedValue)
   }
 
   const options = [
@@ -34,15 +34,14 @@ export default function PromptSelection({ reload, close, isModal, prompts, onSuc
   ];
 
   const handleCheckboxSelection = (e: any) => {
-    console.log({checkboxSelection: e.target});
+    console.log({checkboxSelection: e.target.checked()});
     setInheritRepoPrompt(e.target.checked);
-    e.preventDefault();
-    onSuccess();
   }
 
   const handleCompleteClick = (e: any) => {
     console.log("handleCompleteClick clicked");
-
+    e.preventDefault();
+    onSuccess();
   }
 
 
@@ -69,7 +68,7 @@ export default function PromptSelection({ reload, close, isModal, prompts, onSuc
                 }
               },
             }}
-            onChange={(e: any) => handleChange(e)}
+            onChange={(e: any) => handleChange(e.target.value)}
             options={options}
           />
 
