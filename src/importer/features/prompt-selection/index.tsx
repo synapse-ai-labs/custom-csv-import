@@ -2,39 +2,34 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@chakra-ui/button";
 import Box from "../../components/Box";
-import { PromptSelectionProps } from "./types";
+import { BotSelectionProps } from "./types";
 import style from "./style/Complete.module.scss";
 import { PiCheckBold } from "react-icons/pi";
 import Select from 'react-select';
 import Checkbox from "../../components/Checkbox";
 
-export default function PromptSelection({ isModal, prompts, onSuccess }: PromptSelectionProps) {
+export default function BotSelection({ isModal, bots, onSuccess }: BotSelectionProps) {
   const { t } = useTranslation();
 
-  const [selectedPrompt, setSelectedPrompt] = useState<string>();
+  const [selectedBot, setSelectedBot] = useState<string>();
 
-  const [inheritRepoPrompt, setInheritRepoPrompt] = useState(true);
-
-  console.log({prompts});
-
-  const setSelectedValues = () => {
-    console.log("setting selected values");
-  }
+  const [inheritRepoBot, setInheritRepoBot] = useState(true);
+  
 
   const handleChange = (selectedValue: any) => {
     console.log({selectedOption: selectedValue.value});
-    setSelectedPrompt(selectedValue.value)
+    setSelectedBot(selectedValue.value)
   }
 
   const handleCheckboxSelection = (e: any) => {
     console.log({checkboxSelection: e.target.checked});
-    setInheritRepoPrompt(e.target.checked);
+    setInheritRepoBot(e.target.checked);
   }
 
   const handleCompleteClick = (e: any) => {
     console.log("handleCompleteClick clicked");
     e.preventDefault();
-    onSuccess(selectedPrompt!, inheritRepoPrompt);
+    onSuccess(selectedBot!, inheritRepoBot);
   }
 
 
@@ -42,11 +37,11 @@ export default function PromptSelection({ isModal, prompts, onSuccess }: PromptS
     <Box className={style.content}>
       <>
         <div style={{display: 'flex', alignItems: 'center'}}>
-          <span>{t("Select review prompt")}</span>
+          <span>{t("Select review bot")}</span>
           <span style={{marginLeft: 10}}>
             <Select
               required={true}
-              placeholder={'Select review prompt'}
+              placeholder={'Select review bot'}
               styles={{
                 control: (baseStyles, state) => ({
                   ...baseStyles,
@@ -62,7 +57,7 @@ export default function PromptSelection({ isModal, prompts, onSuccess }: PromptS
                 },
               }}
               onChange={(selectedOption: any) => handleChange(selectedOption)}
-              options={prompts.map(o => {
+              options={bots.map(o => {
                 return {
                   value: o.id,
                   label: o.label
@@ -72,16 +67,16 @@ export default function PromptSelection({ isModal, prompts, onSuccess }: PromptS
           </span>
         </div>
         <div style={{display: 'flex'}}>
-          <div>Inherit repository review prompts</div>
+          <div>Inherit repository review bots</div>
           <Checkbox
             style={{marginLeft: 10}}
-            checked={inheritRepoPrompt}
+            checked={inheritRepoBot}
             onChange={(e) => handleCheckboxSelection(e)}
           />
         </div>
         <div className={style.actions}>
           {isModal && (
-            <Button isDisabled={!selectedPrompt} onClick={handleCompleteClick} type="submit" colorScheme="primary" leftIcon={<PiCheckBold />} >
+            <Button isDisabled={!selectedBot} onClick={handleCompleteClick} type="submit" colorScheme="primary" leftIcon={<PiCheckBold />} >
               {t("Complete")}
             </Button>
           )}

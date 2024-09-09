@@ -2,7 +2,7 @@ export declare const StepEnum: {
     Upload: number;
     RowSelection: number;
     MapColumns: number;
-    PromptSelection: number;
+    BotSelection: number;
     Complete: number;
 };
 declare function useStepNavigation(initialStep: number, skipHeader: boolean): {

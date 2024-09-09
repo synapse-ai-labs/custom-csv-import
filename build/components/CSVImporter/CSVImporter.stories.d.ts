@@ -11,7 +11,7 @@ declare const _default: import("@storybook/types").ComponentAnnotations<import("
     skipHeaderRowSelection?: boolean | undefined;
     language?: string | undefined;
     customTranslations?: import("i18next").Resource | undefined;
-    prompts: {
+    bots: {
         id: number;
         label: string;
     }[];
@@ -34,7 +34,7 @@ export declare const Importer: import("@storybook/types").AnnotatedStoryFn<impor
     skipHeaderRowSelection?: boolean | undefined;
     language?: string | undefined;
     customTranslations?: import("i18next").Resource | undefined;
-    prompts: {
+    bots: {
         id: number;
         label: string;
     }[];

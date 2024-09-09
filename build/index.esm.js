@@ -32316,7 +32316,7 @@ var StepEnum = {
     Upload: 0,
     RowSelection: 1,
     MapColumns: 2,
-    PromptSelection: 3,
+    BotSelection: 3,
     Complete: 4,
 };
 var calculateNextStep = function (nextStep, skipHeader) {
@@ -32324,8 +32324,8 @@ var calculateNextStep = function (nextStep, skipHeader) {
         switch (nextStep) {
             case StepEnum.Upload:
             case StepEnum.RowSelection:
-                return StepEnum.PromptSelection;
-            case StepEnum.PromptSelection:
+                return StepEnum.BotSelection;
+            case StepEnum.BotSelection:
                 return StepEnum.MapColumns;
             case StepEnum.MapColumns:
                 return StepEnum.Complete;
@@ -54360,42 +54360,41 @@ var StateManagedSelect = /*#__PURE__*/forwardRef$1(function (props, ref) {
 });
 var StateManagedSelect$1 = StateManagedSelect;
 
-function PromptSelection(_a) {
-    var isModal = _a.isModal, prompts = _a.prompts, onSuccess = _a.onSuccess;
+function BotSelection(_a) {
+    var isModal = _a.isModal, bots = _a.bots, onSuccess = _a.onSuccess;
     var t = useTranslation().t;
-    var _b = useState(), selectedPrompt = _b[0], setSelectedPrompt = _b[1];
-    var _c = useState(true), inheritRepoPrompt = _c[0], setInheritRepoPrompt = _c[1];
-    console.log({ prompts: prompts });
+    var _b = useState(), selectedBot = _b[0], setSelectedBot = _b[1];
+    var _c = useState(true), inheritRepoBot = _c[0], setInheritRepoBot = _c[1];
     var handleChange = function (selectedValue) {
         console.log({ selectedOption: selectedValue.value });
-        setSelectedPrompt(selectedValue.value);
+        setSelectedBot(selectedValue.value);
     };
     var handleCheckboxSelection = function (e) {
         console.log({ checkboxSelection: e.target.checked });
-        setInheritRepoPrompt(e.target.checked);
+        setInheritRepoBot(e.target.checked);
     };
     var handleCompleteClick = function (e) {
         console.log("handleCompleteClick clicked");
         e.preventDefault();
-        onSuccess(selectedPrompt, inheritRepoPrompt);
+        onSuccess(selectedBot, inheritRepoBot);
     };
-    return (jsx(Box$1, __assign$1({ className: style.content }, { children: jsxs(Fragment$1, { children: [jsxs("div", __assign$1({ style: { display: 'flex', alignItems: 'center' } }, { children: [jsx("span", { children: t("Select review prompt") }), jsx("span", __assign$1({ style: { marginLeft: 10 } }, { children: jsx(StateManagedSelect$1, { required: true, placeholder: 'Select review prompt', styles: {
+    return (jsx(Box$1, __assign$1({ className: style.content }, { children: jsxs(Fragment$1, { children: [jsxs("div", __assign$1({ style: { display: 'flex', alignItems: 'center' } }, { children: [jsx("span", { children: t("Select review bot") }), jsx("span", __assign$1({ style: { marginLeft: 10 } }, { children: jsx(StateManagedSelect$1, { required: true, placeholder: 'Select review bot', styles: {
                                     control: function (baseStyles, state) { return (__assign$1(__assign$1({}, baseStyles), { backgroundColor: 'white', width: 250 })); },
                                     option: function (styles, _a) {
                                         _a.data; var isDisabled = _a.isDisabled; _a.isFocused; _a.isSelected;
                                         return __assign$1(__assign$1({}, styles), { color: 'black', cursor: isDisabled ? 'not-allowed' : 'default' });
                                     },
-                                }, onChange: function (selectedOption) { return handleChange(selectedOption); }, options: prompts.map(function (o) {
+                                }, onChange: function (selectedOption) { return handleChange(selectedOption); }, options: bots.map(function (o) {
                                     return {
                                         value: o.id,
                                         label: o.label
                                     };
-                                }) }) }))] })), jsxs("div", __assign$1({ style: { display: 'flex' } }, { children: [jsx("div", { children: "Inherit repository review prompts" }), jsx(Checkbox, { style: { marginLeft: 10 }, checked: inheritRepoPrompt, onChange: function (e) { return handleCheckboxSelection(e); } })] })), jsx("div", __assign$1({ className: style.actions }, { children: isModal && (jsx(Button$1, __assign$1({ isDisabled: !selectedPrompt, onClick: handleCompleteClick, type: "submit", colorScheme: "primary", leftIcon: jsx(PiCheckBold, {}) }, { children: t("Complete") }))) }))] }) })));
+                                }) }) }))] })), jsxs("div", __assign$1({ style: { display: 'flex' } }, { children: [jsx("div", { children: "Inherit repository review bots" }), jsx(Checkbox, { style: { marginLeft: 10 }, checked: inheritRepoBot, onChange: function (e) { return handleCheckboxSelection(e); } })] })), jsx("div", __assign$1({ className: style.actions }, { children: isModal && (jsx(Button$1, __assign$1({ isDisabled: !selectedBot, onClick: handleCompleteClick, type: "submit", colorScheme: "primary", leftIcon: jsx(PiCheckBold, {}) }, { children: t("Complete") }))) }))] }) })));
 }
 
 function Main(props) {
     var _this = this;
-    var _a = props.isModal, isModal = _a === void 0 ? true : _a, _b = props.modalOnCloseTriggered, modalOnCloseTriggered = _b === void 0 ? function () { return null; } : _b, template = props.template, onComplete = props.onComplete, customStyles = props.customStyles, showDownloadTemplateButton = props.showDownloadTemplateButton, skipHeaderRowSelection = props.skipHeaderRowSelection, prompts = props.prompts;
+    var _a = props.isModal, isModal = _a === void 0 ? true : _a, _b = props.modalOnCloseTriggered, modalOnCloseTriggered = _b === void 0 ? function () { return null; } : _b, template = props.template, onComplete = props.onComplete, customStyles = props.customStyles, showDownloadTemplateButton = props.showDownloadTemplateButton, skipHeaderRowSelection = props.skipHeaderRowSelection, bots = props.bots;
     var skipHeader = skipHeaderRowSelection !== null && skipHeaderRowSelection !== void 0 ? skipHeaderRowSelection : false;
     var t = useTranslation().t;
     // Apply custom styles
@@ -54524,10 +54523,8 @@ function Main(props) {
                         setColumnMapping(columnMapping);
                         goNext();
                     }, isSubmitting: isSubmitting, onCancel: skipHeader ? reload : function () { return goBack(StepEnum.RowSelection); } }));
-            case StepEnum.PromptSelection:
-                return jsx(PromptSelection, { prompts: prompts, isModal: isModal, onSuccess: function (selectedPromptId, inheritRepoConfig) {
-                        console.log("from promptSelection onSuccess");
-                        console.log({ selectedPromptId: selectedPromptId, inheritRepoConfig: inheritRepoConfig });
+            case StepEnum.BotSelection:
+                return jsx(BotSelection, { bots: bots, isModal: isModal, onSuccess: function (selectedBotId, inheritRepoConfig) {
                         setIsSubmitting(true);
                         var startIndex = (selectedHeaderRow || 0) + 1;
                         var mappedRows = [];
@@ -54560,7 +54557,7 @@ function Main(props) {
                             }),
                             rows: mappedRows,
                             meta: {
-                                defaultPromptId: selectedPromptId,
+                                defaultBotId: selectedBotId,
                                 inheritRepoConfig: inheritRepoConfig
                             }
                         };
@@ -55160,7 +55157,7 @@ var css_248z = ".CSVImporter {\n  border: none;\n  background-color: transparent
 styleInject(css_248z);
 
 var CSVImporter = forwardRef$1(function (importerProps, forwardRef) {
-    var _a = importerProps.isModal, isModal = _a === void 0 ? true : _a, _b = importerProps.modalIsOpen, modalIsOpen = _b === void 0 ? true : _b, _c = importerProps.modalOnCloseTriggered, modalOnCloseTriggered = _c === void 0 ? function () { return null; } : _c, modalCloseOnOutsideClick = importerProps.modalCloseOnOutsideClick; importerProps.template; var _d = importerProps.darkMode, darkMode = _d === void 0 ? false : _d, _e = importerProps.primaryColor, primaryColor = _e === void 0 ? "#7a5ef8" : _e, className = importerProps.className; importerProps.onComplete; importerProps.customStyles; importerProps.showDownloadTemplateButton; importerProps.skipHeaderRowSelection; var language = importerProps.language, customTranslations = importerProps.customTranslations; importerProps.prompts; var props = __rest$1(importerProps, ["isModal", "modalIsOpen", "modalOnCloseTriggered", "modalCloseOnOutsideClick", "template", "darkMode", "primaryColor", "className", "onComplete", "customStyles", "showDownloadTemplateButton", "skipHeaderRowSelection", "language", "customTranslations", "prompts"]);
+    var _a = importerProps.isModal, isModal = _a === void 0 ? true : _a, _b = importerProps.modalIsOpen, modalIsOpen = _b === void 0 ? true : _b, _c = importerProps.modalOnCloseTriggered, modalOnCloseTriggered = _c === void 0 ? function () { return null; } : _c, modalCloseOnOutsideClick = importerProps.modalCloseOnOutsideClick; importerProps.template; var _d = importerProps.darkMode, darkMode = _d === void 0 ? false : _d, _e = importerProps.primaryColor, primaryColor = _e === void 0 ? "#7a5ef8" : _e, className = importerProps.className; importerProps.onComplete; importerProps.customStyles; importerProps.showDownloadTemplateButton; importerProps.skipHeaderRowSelection; var language = importerProps.language, customTranslations = importerProps.customTranslations; importerProps.bots; var props = __rest$1(importerProps, ["isModal", "modalIsOpen", "modalOnCloseTriggered", "modalCloseOnOutsideClick", "template", "darkMode", "primaryColor", "className", "onComplete", "customStyles", "showDownloadTemplateButton", "skipHeaderRowSelection", "language", "customTranslations", "bots"]);
     var ref = forwardRef !== null && forwardRef !== void 0 ? forwardRef : useRef(null);
     var _f = useTranslation(); _f.t; var i18n = _f.i18n;
     var current = ref === null || ref === void 0 ? void 0 : ref.current;

@@ -25,7 +25,7 @@ const CSVImporter = forwardRef((importerProps: CSVImporterProps, forwardRef?: an
     skipHeaderRowSelection,
     language,
     customTranslations,
-    prompts,
+    bots,
     ...props
   } = importerProps;
   const ref = forwardRef ?? useRef(null);

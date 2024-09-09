@@ -8,7 +8,7 @@ export const StepEnum = {
   Upload: 0,
   RowSelection: 1,
   MapColumns: 2,
-  PromptSelection: 3,
+  BotSelection: 3,
   Complete: 4,
 };
 
@@ -17,8 +17,8 @@ const calculateNextStep = (nextStep: number, skipHeader: boolean) => {
     switch (nextStep) {
       case StepEnum.Upload:
       case StepEnum.RowSelection:
-        return StepEnum.PromptSelection;
-      case StepEnum.PromptSelection:
+        return StepEnum.BotSelection;
+      case StepEnum.BotSelection:
         return StepEnum.MapColumns;
       case StepEnum.MapColumns:
         return StepEnum.Complete;

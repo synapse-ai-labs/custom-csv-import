@@ -19,9 +19,7 @@ import RowSelection from "../row-selection";
 import Uploader from "../uploader";
 import { PiX } from "react-icons/pi";
 import { useTranslation } from "react-i18next";
-import {Simulate} from "react-dom/test-utils";
-import paste = Simulate.paste;
-import PromptSelection from "../prompt-selection";
+import BotSelection from "../prompt-selection";
 
 export default function Main(props: CSVImporterProps) {
   const {
@@ -32,7 +30,7 @@ export default function Main(props: CSVImporterProps) {
     customStyles,
     showDownloadTemplateButton,
     skipHeaderRowSelection,
-    prompts
+    bots
   } = props;
   const skipHeader = skipHeaderRowSelection ?? false;
 
@@ -210,14 +208,11 @@ export default function Main(props: CSVImporterProps) {
             onCancel={skipHeader ? reload : () => goBack(StepEnum.RowSelection)}
           />
         );
-      case StepEnum.PromptSelection:
-        return <PromptSelection
-          prompts={prompts}
+      case StepEnum.BotSelection:
+        return <BotSelection
+          bots={bots}
           isModal={isModal}
-          onSuccess={(selectedPromptId: string, inheritRepoConfig: boolean) => {
-            console.log("from promptSelection onSuccess");
-            console.log({selectedPromptId, inheritRepoConfig});
-
+          onSuccess={(selectedBotId: string, inheritRepoConfig: boolean) => {
             setIsSubmitting(true);
             // TODO (client-sdk): Move this type, add other data attributes (i.e. column definitions), and move the data processing to a function
             type MappedRow = {
@@ -252,7 +247,7 @@ export default function Main(props: CSVImporterProps) {
               columns: includedColumns.map(({ key }) => ({ key, name: key })),
               rows: mappedRows,
               meta: {
-                defaultPromptId: selectedPromptId,
+                defaultBotId: selectedBotId,
                 inheritRepoConfig: inheritRepoConfig
               }
             };

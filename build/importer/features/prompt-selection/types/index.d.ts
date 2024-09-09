@@ -1,7 +1,7 @@
-export type PromptSelectionProps = {
+export type BotSelectionProps = {
     isModal: boolean;
-    onSuccess: (selectedPromptId: string, inheritRepoConfig: boolean) => void;
-    prompts: {
+    onSuccess: (selectedBotId: string, inheritRepoConfig: boolean) => void;
+    bots: {
         id: number;
         label: string;
     }[];

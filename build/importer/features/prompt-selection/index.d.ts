@@ -1,2 +1,2 @@
-import { PromptSelectionProps } from "./types";
-export default function PromptSelection({ isModal, prompts, onSuccess }: PromptSelectionProps): import("react/jsx-runtime").JSX.Element;
+import { BotSelectionProps } from "./types";
+export default function BotSelection({ isModal, bots, onSuccess }: BotSelectionProps): import("react/jsx-runtime").JSX.Element;

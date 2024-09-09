@@ -16,7 +16,7 @@ export declare function createCSVImporter(props: CreateImporterProps): {
         skipHeaderRowSelection?: boolean | undefined;
         language?: string | undefined;
         customTranslations?: import("i18next").Resource | undefined;
-        prompts: {
+        bots: {
             id: number;
             label: string;
         }[];
