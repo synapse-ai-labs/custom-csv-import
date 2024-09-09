@@ -2,14 +2,14 @@ export declare enum Steps {
     Upload = "upload",
     RowSelection = "row-selection",
     MapColumns = "map-columns",
-    PromptSelection = "prompt-selection"
+    BotSelection = "bot-selection"
 }
 export type FileRow = {
     index: number;
     values: string[];
 };
 export type FileDataMeta = {
-    defaultPromptId: string;
+    defaultBotId: string;
     inheritRepoConfig: boolean;
 };
 export type FileData = {

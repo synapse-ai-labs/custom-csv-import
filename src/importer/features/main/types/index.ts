@@ -2,7 +2,7 @@ export enum Steps {
   Upload = "upload",
   RowSelection = "row-selection",
   MapColumns = "map-columns",
-  PromptSelection = "prompt-selection"
+  BotSelection = "bot-selection"
 }
 
 export type FileRow = {
@@ -11,7 +11,7 @@ export type FileRow = {
 };
 
 export type FileDataMeta = {
-  defaultPromptId: string;
+  defaultBotId: string;
   inheritRepoConfig: boolean;
 };
 
